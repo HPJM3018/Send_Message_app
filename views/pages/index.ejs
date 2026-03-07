@@ -1,0 +1,70 @@
+<%- include('header') %>
+
+    <form action="/" method="post" class="ui form">
+
+        <div class="field">
+
+            <label for="message"> Message</label>
+            <textarea name="message" id="message"></textarea>
+        </div>
+
+        <button type="submit" class="ui blue labeled submit icon button">
+            <i class="icon edit"> </i>
+            Envoyer
+        </button>
+    </form>
+
+
+    <div class="ui comments">
+        <h3 class="ui dividing header">Commentaires</h3>
+
+        <% if (messages && messages.length> 0) { %>
+            <% messages.forEach(message=> { %>
+                <div class="comment">
+
+
+                    <div class="avatar">
+                       <a href="/messages/<%= message.id %>"> <img src="https://robohash.org/<%= encodeURIComponent(message.content) %>?set=set3&size=100x100"
+                            alt="Robot rigolo" class="funny-avatar"> </a>
+                    </div>
+
+                    <style>
+                        .funny-avatar {
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 50%;
+                            border: 3px solid #ff6b6b;
+                            animation: bounce 2s infinite;
+                        }
+
+                        @keyframes bounce {
+
+                            0%,
+                            100% {
+                                transform: translateY(0)
+                            }
+
+                            50% {
+                                transform: translateY(-5px)
+                            }
+                        }
+                    </style>
+
+                    <div class="content">
+                        <div class="metadata">
+                            <div class="date">
+                                <%= message.created_at.fromNow() %>
+                            </div>
+                        </div>
+                        <div class="test">
+                            <%= message.content %>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <p class="ui info message">Aucun commentaire pour le moment</p>
+                        <% } %>
+    </div>
+
+    <%- include('footer') %>

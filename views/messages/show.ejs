@@ -1,0 +1,50 @@
+<%- include('../pages/header') %>
+
+<div class="ui comments">
+    <h3 class="ui dividing header">Commentaire #<%= message.row.id %></h3>
+
+    <% if (message) { %>
+        <div class="comment">
+            <div class="avatar">
+                <a href="/messages/<%= message.row.id %>">
+                    <img src="https://robohash.org/<%= encodeURIComponent(message.content) %>?set=set3&size=100x100"
+                         alt="Robot rigolo" 
+                         class="funny-avatar">
+                </a>
+            </div>
+
+            <style>
+                .funny-avatar {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    border: 3px solid #ff6b6b;
+                    animation: bounce 2s infinite;
+                }
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0) }
+                    50% { transform: translateY(-5px) }
+                }
+            </style>
+
+            <div class="content">
+                <div class="metadata">
+                    <div class="date">
+                        <%= message.created_at.fromNow() %>
+                    </div>
+                </div>
+                <div class="test">
+                    <%= message.content %>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <p class="ui info message">Message non trouvé</p>
+    <% } %>
+
+    <br><br>
+    
+    <a href="/" class="ui button primary">← Retour à tous les messages</a>
+</div>
+
+<%- include('../pages/footer') %>
