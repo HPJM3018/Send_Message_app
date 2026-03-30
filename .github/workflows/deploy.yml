@@ -26,12 +26,12 @@ jobs:
       
       - name: Run build 
         run: |
-          if npm run | grep -q "build"; then
+          if npm run | grep -q "^  build$"; then
             npm run build
           else
             echo "No build script found, skipping..."
+            exit 0
           fi
-
   unit-tests:
     name: Unit Tests (Jest)
     runs-on: ubuntu-latest
