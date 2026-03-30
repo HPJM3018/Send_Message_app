@@ -13,8 +13,7 @@
     "test:setup": "mkdir -p db && touch db/express_test.db",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "vercel-build": "npm ci --production"
-  },
+    "vercel-build": "npm ci --production && cp -r views dist/ || true"  },
   "dependencies": {
     "body-parser": "^2.2.2",
     "ejs": "^4.0.1",
