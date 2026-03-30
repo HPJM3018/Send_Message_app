@@ -15,7 +15,7 @@ app.use(session({
     var match = req.url.match(/^\/([^/]+)/);
     return {
       path: match ? '/' + match[1] : '/',
-      httpOnly: true,
+      httpOnly: false,
       secure: false,
       maxAge: 60000
     }
@@ -89,4 +89,11 @@ app.post('/', (request, response) => {
 
 })
 
-app.listen(8080)
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

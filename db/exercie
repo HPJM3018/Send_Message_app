@@ -1,0 +1,59 @@
+CREATE TABLE user(
+    id INTEGER  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    email VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE aliment(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100),
+    graisse VARCHAR(100),
+    categorie VARCHAR(100) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    bio BOOLEAN DEFAULT false,
+    total FLOAT NOT NULL
+);
+
+
+SHOW COLUMNS FROM aliment;
+
+INSERT INTO `user` (`nom`, `prenom`,`email`) VALUES (`MATANTI`, `SPAGHETHI`,`exemple@gmail.com`),(`MATANTI1`, `SPAGHETHI1`,`exemple1@gmail.com`);
+
+SELECT * FROM user;
+
+SELECT `nom`, `prenom` FROM user;
+
+UPDATE `user` SET ` email = exemple1@gmail.com` WHERE `id=1`;
+
+DELETE FROM user WHERE id=2;
+
+DROP DATABASE foldy;
+
+DROP TABLE `user`;
+
+SELECT * FROM user WHERE prenom = "SPAGHETI";
+
+SELECT * FROM user WHERE email LIKE "%gmail.com";
+
+SELECT * FROM user WHERE email LIKE "%gmail%"
+
+SELECT * FROM aliment WHERE (calories < 50) AND Bio = True ORDER BY calories ASC;
+
+SELECT * FROM aliment WHERE nom LIKE "%pomme%"
+
+SELECT COUNT (DISTINCT nom) FROM aliment LIKE "%pomme";
+
+SELECT MAX(sucre) AS "nos produits sucre" FROM aliment;
+SELECT MAX(calories) AS "Maximum de calorie" FROME aliment;
+
+CREATE VIEW ma_vue_vw AS (SELECT * FROM user WHERE email LIKE "%gmail.com");
+
+
+SELECT * FROM film JOIN film_pays_de_sortie ON (film.id = film_pays_de_sortie.film_id) JOIN pays_de_sortie ON (pays_de_sortie.id = film_pays_de_sortie.pays_de_sortie_id);
+
+ALTER TABLE aliment ADD vitamines_c FLOAT;
+
+ADD, DROP, MODIFY, CHANGE
+
+FOREIGN KEY (lieu_id) REFERENCES lieu (id) ON DELETE RESTRICT ON UPDATE CASCADE,
