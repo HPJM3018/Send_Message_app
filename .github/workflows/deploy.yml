@@ -29,6 +29,7 @@ jobs:
           if npm run | grep -q "build"; then
             npm run build
           else
+            echo "No build script found, skipping..."
           fi
 
   unit-tests:
